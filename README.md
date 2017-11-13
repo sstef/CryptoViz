@@ -1,6 +1,6 @@
 ## README
 
-# HistoriTrends
+# CryptoViz
 
 The hotest trend in the financial world today has been cryptocurrency. These enigmas of market mentality have shown enormous profitability with stagering volatility. Still, the demand continues to soar as their value increases. As such, I wanted to create an interactive visualization of cryptocurrencies so that potential investors or enthusiests could learn about each one.
 
