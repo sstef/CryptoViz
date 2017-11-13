@@ -17,7 +17,7 @@ d3.select('svg').selectAll("*").remove();
 
     var labelArc = d3.arc()
       .outerRadius(radius-30)
-      .innerRadius(radius-70);
+      .innerRadius(radius-50);
 
     var pie =d3.pie().sort(null).value((d) => d.market_cap_usd);
 
@@ -25,6 +25,12 @@ d3.select('svg').selectAll("*").remove();
       .attr("width", width).attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
+
+    svg.append("text")
+      .attr("text-anchor", "middle")
+      .attr("class", "title")
+      .text("Top Cryptocurrencies");
+
 
     const url = 'https://api.coinmarketcap.com/v1/ticker/?limit=10'
 
@@ -34,6 +40,10 @@ d3.select('svg').selectAll("*").remove();
         d.market_cap_usd = +d.market_cap_usd;
         d.price_usd = +d.price_usd;
         d.rank = +d.rank;
+        d.symbol = d.symbol;
+        d.percent_change_24h = +d.percent_change_24h;
+        d.percent_change_7d = +d.percent_change_7d;
+        d.last_updated = d.last_updated;
       });
 
     d3.selectAll("input[type=\"radio\"]").on("change", change);
@@ -43,30 +53,45 @@ d3.select('svg').selectAll("*").remove();
       .style("opacity", 0.7);
 
     var description = d3.select("article").append("div")
-      .attr("class", "description")
-      .style("opacity", 0.7);
+      .attr("class", "description");
+
+    description.append('div').attr('class', 'rank');
+    description.append('div').attr('class', 'name');
+    description.append('div').attr('class', 'symbol');
+    description.append('div').attr('class', 'price');
+    description.append('div').attr('class', 'market_cap_usd');
+    description.append('div').attr('class', 'percent_change_7d');
+    description.append('div').attr('class', 'percent_change_24h');
+    description.append('div').attr('class', 'last_updated');
 
 
     var g = svg.selectAll(".arc")
       .data(pie(data)).enter().append("g")
       .attr("class", "arc")
+      .style("cursor", "pointer")
       .on("mouseover", (d) => {
            div.transition()
                .duration(200)
                .style("opacity", .9);
-           div .html("Currency: " + d.data.name + "<br/>" + "Rank: #" + d.data.rank + "<br/>" + "Market Cap: " +    d.data.market_cap_usd + "<br/>" + "Price: $" + d.data.price_usd)
+           div .html("Currency: " + d.data.name + "<br/>" + "Rank: #" + d.data.rank)
                .style("left", (d3.event.pageX) + "px")
                .style("top", (d3.event.pageY - 28) + "px");
-           })
+         })
        .on("mouseout", (d) => {
            div.transition()
                .duration(500)
                .style("opacity", 0);
            })
        .on("click", (d) => {
-            description.transition()
-                .style("opacity", .9);
-            description.html("Currency: " + d.data.name + "<br/>" + "Rank: #" + d.data.rank + "<br/>" + "Market Cap: " +    d.data.market_cap_usd + "<br/>" + "Price: $" + d.data.price_usd)
+            description.enter().transition().style("opacity", .9);
+            description.select('.rank').html('#' + d.data.rank);
+            description.select('.name').html("Currency: " + d.data.name);
+            description.select('.symbol').html("Symbol: " + d.data.symbol);
+            description.select('.price').html("Price: $" + d.data.price_usd);
+            description.select('.percent_change_7d').html("7 Day Change: " + d.data.percent_change_7d + "%");
+            description.select('.percent_change_24h').html("24 Hour Change: " + d.data.percent_change_24h + "%");
+            description.select('.market_cap_usd').html("Market Cap: " + d.data.market_cap_usd);
+            description.style('display', 'block');
         });
 
     var count = 0;

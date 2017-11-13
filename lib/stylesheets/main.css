@@ -1,7 +1,15 @@
-body {
+body > div {
   width: 100%;
   height: 100%;
   position: absolute;
+  font-family: 'Economica', sans-serif;
+  background-image: url('https://github.com/sstef/CryptoViz/blob/master/lib/images/pexels-photo-241544.jpeg');
+}
+
+body > img {
+  position: absolute;
+  width: 130px;
+  margin: 20px;
 }
 
 footer {
@@ -15,4 +23,17 @@ footer > a > img {
   width: 40px;
   height: 40px;
   margin-right: 20px;
+}
+
+h2 {
+  font-size: 24px;
+  text-decoration: underline;
+  margin-bottom: 5px;
+}
+
+article > p {
+  text-align: center;
+  font-size: 14px;
+  font-style: italic;
+  color: white;
 }
