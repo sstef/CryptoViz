@@ -3,31 +3,57 @@
   <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF8">
     <title>CryptoViz</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css?family=Economica" rel="stylesheet">
     <link rel="stylesheet" href="lib/stylesheets/reset.css">
     <link rel="stylesheet" href="lib/stylesheets/main.css">
     <link rel="stylesheet" href="lib/stylesheets/piechart.css">
-    <!-- <script type="text/javascript" src="lib/app/bundle.js" /> -->
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="./lib/app/bundle.js"></script>
   </head>
   <body>
     <img src="lib/images/logo.png" />
     <div>
       <section>
-        <script type="text/javascript" src="./lib/app/piechart.jsx"></script>
-        <article>
-          <h2>INFO</h2>
-          <p>(click on pie graph for more info)</p>
-        </article>
-        <!-- <form>
-          <h3>Evaluate by:</h3>
-          <label><input type="radio" name="radio_a" value="market_cap_usd" checked/>Market Cap</label>
-          <br/>
-          <label><input type="radio" name="radio_a" value="price" />Price</label>
-          <br/>
-          <label><input type="radio" name="radio_a" value="rank" />Rank</label>
 
-        </form> -->
+        <div class="right-panel">
+          <article>
+            <h2>INFO</h2>
+            <p>(click on pie graph for more info)</p>
+          </article>
+
+          <form id="userForm" class="controls" action="" methof="GET" >
+            <h2>CONTROLS</h2>
+            <label>Graph by:
+              <select id="categories">
+                 <option value="market_cap_usd" selected>Market Cap</option>
+                 <option value="price_usd">Price</option>
+                 <option value="percent_change_7d">Percent Change (7 Day)</option>
+                 <option value="percent_change_7d">Percent Change (24 Hour)</option>
+              </select>
+            </label>
+            <br/>
+
+            <label>Select # of currencies:
+              <select id="DropDownList">
+                 <option value="5">5</option>
+                 <option value="10" selected>10</option>
+                 <option value="15">15</option>
+                 <option value="20">20</option>
+                 <option value="25">25</option>
+              </select>
+            </label>
+            <br/>
+
+            <label>What rank shall we start at:
+              <input id="count" class="text-input" placeholder="0" />
+            </label>
+            <br/>
+
+
+            <input type="submit" value="Render">
+          </form>
+        </div>
       </section>
 
       <footer>

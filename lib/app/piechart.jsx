@@ -1,13 +1,19 @@
-d3.select('svg').selectAll("*").remove();
+export default function BuildPiechart(url, category) {
+
+    d3.select('svg').remove();
+    d3.select('article').selectAll('div').remove();
 
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
       width = 600 - margin.right - margin.left,
       height = 600 - margin.top - margin.bottom,
       radius = width/2;
 
-    var color = d3.scaleOrdinal().range(["#3366CC","#DC3912","#FF9900","#109618",
-      "#990099","#3B3EAC","#0099C6","#DD4477","#66AA00","#B82E2E","#316395","#994499",
-      "#22AA99","#AAAA11","#6633CC","#E67300","#8B0707","#329262","#5574A6","#3B3EAC"]);
+// Other Color codes
+      // ["#3366CC","#DC3912","#FF9900","#109618",
+      //   "#990099","#3B3EAC","#0099C6","#DD4477","#66AA00","#B82E2E","#316395","#994499",
+      //   "#22AA99","#AAAA11","#6633CC","#E67300","#8B0707","#329262","#5574A6","#3B3EAC"]
+
+    var color = d3.scaleOrdinal().range(['#ffffcc', '#ffff99',	'#ffff66',	'#ffff33',	'#ffff00', '#ccff66',	'#ccff33',	'#ccff00', '#99ff66',	'#99ff33',	'#99ff00', '#99cc66',	'#99cc33',	'#99cc00', '#cccc66',	'#cccc33',	'#cccc00', '#ffcc66', '#ffcc33', '#ffcc00']);
 
     var arc = d3.arc()
       .outerRadius(radius-10)
@@ -19,7 +25,7 @@ d3.select('svg').selectAll("*").remove();
       .outerRadius(radius-30)
       .innerRadius(radius-50);
 
-    var pie =d3.pie().sort(null).value((d) => d.market_cap_usd);
+    var pie =d3.pie().sort(null).value((d) => d[category]);
 
     var svg = d3.select("section").append("svg")
       .attr("width", width).attr("height", height)
@@ -29,10 +35,13 @@ d3.select('svg').selectAll("*").remove();
     svg.append("text")
       .attr("text-anchor", "middle")
       .attr("class", "title")
-      .text("Top Cryptocurrencies");
-
-
-    const url = 'https://api.coinmarketcap.com/v1/ticker/?limit=10'
+      .attr("dy", "0em")
+      .text("CRYPTOCURRENCIES")
+    svg.append("text")
+      .attr("text-anchor", "middle")
+      .attr("class", "subtitle")
+      .attr("dy", "1.2em")
+      .text("Sorted by " + category.replace(/_|-|\./g, ' '));
 
     var data = d3.json(url, function(error, data){
       data.forEach((d) => {
@@ -45,8 +54,6 @@ d3.select('svg').selectAll("*").remove();
         d.percent_change_7d = +d.percent_change_7d;
         d.last_updated = d.last_updated;
       });
-
-    d3.selectAll("input[type=\"radio\"]").on("change", change);
 
     var div = d3.select("body").append("div")
       .attr("class", "tooltip")
@@ -109,32 +116,18 @@ d3.select('svg').selectAll("*").remove();
         .attr("transform", (d) => "translate(" + labelArc.centroid(d) + ")")
         .attr("dy", "14px").text((d) => d.data.name);
 
-      var timeout = setTimeout(function() {
-          d3.select("input value=\"market_cap_usd\"").property("checked", true).each(change);
-        }, 2000);
-
       function change() {
           var value = this.value;
           clearTimeout(timeout);
-          pie.value((d) => d[value]); // change the value function
-          path = path.data(pie); // compute the new angles
-          path.transition().duration(2000).attrTween("d", pieTween); // redraw the arcs
+          pie.value((d) => d[value]);
+          path = path.data(pie);
+          path.transition().duration(2000).attrTween("d", pieTween);
         }
 
       function midAngle(d) {
         return d.startAngle + (d.endAngle - d.startAngle) / 2;
       }
-
-      g.selectAll("text").data(data)
-       .enter()
-       .append("text")
-       .attr("text-anchor", "middle")
-       .attr("transform", (d) => {
-         var pos = labelArc.centroid(d);
-         pos[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
-         return "translate("+ pos +")";
-       }).text((d) => d.data.name);
-     });
+    });
 
 
     function pieTween (b) {
@@ -142,3 +135,4 @@ d3.select('svg').selectAll("*").remove();
       var x = d3.interpolate({startAngle: 0, endAngle: 0}, b);
       return (t) => arc(x(t));
     };
+}

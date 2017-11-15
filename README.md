@@ -31,3 +31,6 @@ Day 1: Read up on and learn to use d3, begin creating the pie chart element.
 Day 2: Render the information associated with pie slices as tooltips and side information.
 
 Day 3: Implement the interactive user controls.
+
+## Credits
+API calls are being made to https://api.coinmarketcap.com for currency data.

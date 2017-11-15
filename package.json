@@ -1,0 +1,37 @@
+{
+  "name": "cryptoviz",
+  "version": "1.0.0",
+  "description": "A data visualization fo crytocurrencies",
+  "main": "webpack.config.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "webpack --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sstef/CryptoViz.git"
+  },
+  "keywords": [
+    "cryptocurrency",
+    "bitcoin",
+    "ethereum",
+    "currency",
+    "data",
+    "visualization"
+  ],
+  "author": "Steven Stef",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sstef/CryptoViz/issues"
+  },
+  "homepage": "https://github.com/sstef/CryptoViz#readme",
+  "dependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "webpack": "^3.8.1"
+  }
+}
