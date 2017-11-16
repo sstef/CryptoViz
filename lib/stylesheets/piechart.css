@@ -25,6 +25,13 @@ h2{
   text-align: center;
 }
 
+polyline{
+	opacity: .3;
+	stroke: black;
+	stroke-width: 2px;
+	fill: none;
+}
+
 .tooltip {
   text-align: center;
   width: 200px;
