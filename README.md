@@ -33,4 +33,5 @@ Day 2: Render the information associated with pie slices as tooltips and side in
 Day 3: Implement the interactive user controls.
 
 ## Credits
-API calls are being made to https://api.coinmarketcap.com for currency data.
+API calls are being made to https://api.coinmarketcap.com for broad scale currency data.
+Meanwhile, API calls to https://min-api.cryptocompare.com are for historical price data.

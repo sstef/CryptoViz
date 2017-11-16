@@ -8,18 +8,23 @@
     <link rel="stylesheet" href="lib/stylesheets/reset.css">
     <link rel="stylesheet" href="lib/stylesheets/main.css">
     <link rel="stylesheet" href="lib/stylesheets/piechart.css">
+    <link rel="stylesheet" href="lib/stylesheets/chart.css">
     <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="http://techanjs.org/techan.min.js"></script>
     <script src="./lib/app/bundle.js"></script>
   </head>
   <body>
     <img src="lib/images/logo.png" />
     <div>
-      <section>
+      <figure id="contianer">
+        <section id="charts"></section>
+      </figure>
 
         <div class="right-panel">
           <article>
             <h2>INFO</h2>
             <p>(click on pie graph for more info)</p>
+            <input type="button" id="flipper" value="Change Chart"/>
           </article>
 
           <form id="userForm" class="controls" action="" methof="GET" >
@@ -54,7 +59,7 @@
             <input type="submit" value="Render">
           </form>
         </div>
-      </section>
+
 
       <footer>
         <a href="https://github.com/sstef" target="_blank">

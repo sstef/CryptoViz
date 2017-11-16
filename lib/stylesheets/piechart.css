@@ -11,17 +11,8 @@
   font-weight: bold;
 }
 
-section {
-  width: 100%;
-  display:flex;
-  justify-content: space-evenly;
-  height:500px;
-  margin-top: 30px;
-  overflow:visible
-}
-
 article {
-  height: 205px;
+  height: 250px;
   width: 300px;
   padding: 10px;
   border-radius: 10px;

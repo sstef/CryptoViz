@@ -1,12 +1,14 @@
+import BuildCandlestickChart from './chart';
+
 export default function BuildPiechart(url, category) {
 
     d3.select('svg').remove();
     d3.select('article').selectAll('div').remove();
 
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
-      width = 600 - margin.right - margin.left,
+      width = 700 - margin.right - margin.left,
       height = 600 - margin.top - margin.bottom,
-      radius = width/2;
+      radius = (3*width)/8;
 
 // Other Color codes
       // ["#3366CC","#DC3912","#FF9900","#109618",
@@ -28,6 +30,7 @@ export default function BuildPiechart(url, category) {
     var pie =d3.pie().sort(null).value((d) => d[category]);
 
     var svg = d3.select("section").append("svg")
+      .attr("class", "piechart front")
       .attr("width", width).attr("height", height)
       .append("g")
       .attr("transform", "translate(" + width/2 + "," + height/2 + ")")
@@ -52,7 +55,6 @@ export default function BuildPiechart(url, category) {
         d.symbol = d.symbol;
         d.percent_change_24h = +d.percent_change_24h;
         d.percent_change_7d = +d.percent_change_7d;
-        d.last_updated = d.last_updated;
       });
 
     var div = d3.select("body").append("div")
@@ -99,6 +101,12 @@ export default function BuildPiechart(url, category) {
             description.select('.percent_change_24h').html("24 Hour Change: " + d.data.percent_change_24h + "%");
             description.select('.market_cap_usd').html("Market Cap: " + d.data.market_cap_usd);
             description.style('display', 'block');
+
+            BuildCandlestickChart(d.data.symbol);
+            $('#flipper').on("click", (e) => {
+                e.preventDefault();
+                $('#charts').toggleClass("flipped");
+            });
         });
 
     var count = 0;
