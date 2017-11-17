@@ -3,6 +3,7 @@ body > div {
   height: 100%;
   position: absolute;
   font-family: 'Economica', sans-serif;
+  overflow-y: hidden;
 }
 
 body {
@@ -163,7 +164,7 @@ input[type="submit"] {
 
 figure {
   width: 95%;
-  height: 96%;
+  height: 640px;
   position: relative;
   -webkit-perspective: 800;
   perspective: 800;
