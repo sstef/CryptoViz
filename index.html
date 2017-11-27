@@ -27,6 +27,39 @@
       </div>
     </div>
     <img src="lib/images/logo.png" />
+
+    <div id="glossary" class="hidden">
+      <div class="glossary">
+          <h2>GLOSSARY</h2>
+          <div class="gloss_grid">
+            <h5>Symbol:</h5>
+              <p>This is the shorthand representation of the currency which is also found when trading (buying/selling).</p>
+          </div>
+          <div class="gloss_grid">
+            <h5>Price:</h5>
+            <p>The current valuation (purchase/sell value) for the currency.</P>
+          </div>
+          <div class="gloss_grid">
+            <h5>Market Cap:</h5>
+              <p>The market capitalization is the market value of total currency. It is calculated by multiplying the price with the total outstanding shares.</P>
+          </div>
+          <div class="gloss_grid">
+            <h5>Percent Change:</h5>
+              <p>This is the percent change in price over a specific time frame. (Here it is represented as either 24 hours or 7 days)</p>
+          </div>
+          <br/>
+          <p>**The ranking is determined by market cap**</p>
+          <div id="button-wrapper">
+            <input type="button" id="closeModal" value="Close" onclick="closeGlossary()" />
+            <script>
+              function closeGlossary() {
+                $('#glossary').toggleClass("hidden instructions");
+              }
+            </script>
+          </div>
+        </div>
+      </div>
+
     <div>
       <figure id="contianer">
         <section id="charts"></section>
@@ -37,9 +70,17 @@
             <h2>INFO</h2>
             <p>(click on pie graph for more info)</p>
             <input type="button" id="flipper" value="Change Chart"/>
+            <img id="glossaryIcon" src="lib/images/glossary_icon.png" />
           </article>
 
-          <form id="userForm" class="controls" action="" methof="GET" >
+
+<!-- TODO: add news for currenct on click -->
+          <!-- <segment>
+            <h2>NEWS</h2>
+            <p>(click on pie graph for currency news)</p>
+          </segment> -->
+
+          <form id="userForm" class="controls" action="" method="GET" >
             <h2>CONTROLS</h2>
             <label>Graph by:
               <select id="categories">
@@ -53,8 +94,8 @@
 
             <label>Select # of currencies:
               <select id="DropDownList">
-                 <option value="5">5</option>
-                 <option value="10" selected>10</option>
+                 <option value="5" selected>5</option>
+                 <option value="10">10</option>
                  <option value="15">15</option>
                  <option value="20">20</option>
                  <option value="25">25</option>
@@ -62,9 +103,16 @@
             </label>
             <br/>
 
-            <label>What rank shall we start at:
-              <input id="count" class="text-input" placeholder="0" />
-            </label>
+            <label>What rank shall we start at: &nbsp;#</label><span id="slider_value"></span>
+              <br/>
+              <span id="slider">
+                1<input id="count" type="range" min="0" max="199" value="0" step="1" onchange="showValue(this.value)"/>200
+              </span>
+              <script>
+                function showValue(x) {
+                  document.getElementById("slider_value").innerHTML=(parseInt(x) + 1);
+                }
+              </script>
             <br/>
 
 

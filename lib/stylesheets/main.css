@@ -108,16 +108,70 @@ article > p {
   color: white;
 }
 
+#glossaryIcon {
+  position: absolute;
+  right: -5px;
+  bottom: 15px;
+  width: 25px;
+  cursor: help;
+}
+
+#glossaryIcon:hover {
+  position: absolute;
+  right: -7px;
+  bottom: 13px;
+  width: 27px;
+}
+
+
+.glossary {
+  height: auto;
+  width: 35%;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 101;
+  padding: 30px;
+  border-radius: 10px;
+  left: 25%;
+  top: 20%;
+  position: absolute;
+}
+
+.glossary > h2 {
+  font-size: 40px;
+  text-decoration: underline;
+  font-weight: bold;
+  color: white;
+}
+
+.glossary > p { text-align: center; }
+
+.gloss_grid {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+  font-size: 16px;
+  padding-top: 10px;
+}
+
+.gloss_grid > h5 {
+  font-weight: bold;
+  flex: 0 0 25%;
+}
+
+.gloss_grid > p {
+  flex: 1;
+}
+
 .controls {
   position: absolute;
   margin-top: 30px;
   background-color: rgba(0,0,0,0.5);
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   color: white;
   font-size: 20px;
-  width: 280px;
-  height: 200px;
+  width: 300px;
+  height: 155px;
 }
 
 .right-panel {
@@ -134,7 +188,7 @@ article > p {
   background-color: white;
   font-size: 14px;
   position: absolute;
-  right: 10%;
+  right: 6%;
 }
 
 .controls > label {
@@ -164,15 +218,15 @@ input[type="submit"] {
 
 figure {
   width: 95%;
-  height: 640px;
+  height: 605px;
   position: relative;
   -webkit-perspective: 800;
   perspective: 800;
 }
 
 #charts {
-  width: 55%;
-  height: 88%;
+  width: 650px;
+  height: 93%;
   display:flex;
   justify-content: space-evenly;
   overflow: visible;
@@ -215,4 +269,18 @@ figure {
   left: 35%;
   bottom: 5%;
   cursor: pointer;
+}
+
+#slider {
+  font-size: 15px;
+  width: 100%;
+}
+
+#count {
+  width:260px;
+  cursor: e-resize;
+}
+
+#slider_value:empty::before {
+  content: "1"
 }

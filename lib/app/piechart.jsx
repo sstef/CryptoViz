@@ -24,8 +24,8 @@ export default function BuildPiechart(url, category) {
       .padAngle(0.010);
 
     var labelArc = d3.arc()
-      .outerRadius(radius*0.9)
-      .innerRadius(radius*0.7);
+      .outerRadius(radius*1.2)
+      .innerRadius(radius*0.8);
 
     var pie =d3.pie().sort(null).value((d) => d[category]);
 
@@ -99,7 +99,7 @@ export default function BuildPiechart(url, category) {
             description.select('.price').html("Price: $" + d.data.price_usd);
             description.select('.percent_change_7d').html("7 Day Change: " + d.data.percent_change_7d + "%");
             description.select('.percent_change_24h').html("24 Hour Change: " + d.data.percent_change_24h + "%");
-            description.select('.market_cap_usd').html("Market Cap: " + d.data.market_cap_usd);
+            description.select('.market_cap_usd').html("Market Cap: $" + d.data.market_cap_usd);
             description.style('display', 'block');
 
             BuildCandlestickChart(d.data.symbol);
@@ -123,11 +123,11 @@ export default function BuildPiechart(url, category) {
         .duration(2500)
         .attr("transform", (d) => "translate(" + labelArc.centroid(d) + ")")
         .attr("dy", "14px")
-        // .attr("transform", function(d){
-        //     var pos = labelArc.centroid(d);
-        //     pos[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
-        //     return "translate("+ pos +")";
-        //   })
+        .attr("transform", function(d){
+            var pos = labelArc.centroid(d);
+            pos[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
+            return "translate("+ pos +")";
+          })
         .text((d) => d.data.name);
 
       function change() {
@@ -138,18 +138,18 @@ export default function BuildPiechart(url, category) {
           path.transition().duration(2000).attrTween("d", pieTween);
         }
 
-      // var polyline = g.selectAll("polyline")
-      //     .data(pie(data), (d) => d.data.name)
-      //     .enter()
-      //     .append("polyline")
-      //     .attr("points", function(d) {
-      //       var pos = labelArc.centroid(d);
-      //           pos[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
-      //       return [arc.centroid(d), labelArc.centroid(d), pos];
-      //     })
-      //     .style("fill", "none")
-      //     .style("stroke", "black")
-      //     .style("stroke-width", "2px");
+      var polyline = g.selectAll("polyline")
+          .data(pie(data), (d) => d.data.name)
+          .enter()
+          .append("polyline")
+          .attr("points", function(d) {
+            var pos = labelArc.centroid(d);
+                pos[0] = radius * (midAngle(d) < Math.PI ? 1 : -1);
+            return [arc.centroid(d), labelArc.centroid(d), pos];
+          })
+          .style("fill", "none")
+          .style("stroke", "black")
+          .style("stroke-width", "1.5px");
 
       function midAngle(d) {
         return d.startAngle + (d.endAngle - d.startAngle) / 2;
