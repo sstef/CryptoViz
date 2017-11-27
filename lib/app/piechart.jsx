@@ -2,6 +2,7 @@ import BuildCandlestickChart from './chart';
 
 export default function BuildPiechart(url, category) {
 
+// Remove previous chart on re render
     d3.select('svg').remove();
     d3.select('article').selectAll('div').remove();
 
@@ -46,6 +47,7 @@ export default function BuildPiechart(url, category) {
       .attr("dy", "1.2em")
       .text("Sorted by " + category.replace(/_|-|\./g, ' '));
 
+// creating the data from the api json response
     var data = d3.json(url, function(error, data){
       data.forEach((d) => {
         d.name = d.name;
@@ -73,7 +75,8 @@ export default function BuildPiechart(url, category) {
     description.append('div').attr('class', 'percent_change_24h');
     description.append('div').attr('class', 'last_updated');
 
-
+// This is the building of the actual donut chart while adding the tooltip on hover and
+// on click events to build the candlestick chart and populate the info section.
     var g = svg.selectAll(".arc")
       .data(pie(data)).enter().append("g")
       .attr("class", "arc")
@@ -118,6 +121,7 @@ export default function BuildPiechart(url, category) {
       .duration(2200)
       .attrTween('d', pieTween);
 
+// Adding labels
       g.append("text")
         .transition().ease(d3.easeLinear)
         .duration(2500)
@@ -138,6 +142,7 @@ export default function BuildPiechart(url, category) {
           path.transition().duration(2000).attrTween("d", pieTween);
         }
 
+// Adds the label lines
       var polyline = g.selectAll("polyline")
           .data(pie(data), (d) => d.data.name)
           .enter()
