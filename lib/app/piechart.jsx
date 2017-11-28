@@ -122,6 +122,17 @@ export default function BuildPiechart(url, category) {
       .attrTween('d', pieTween);
 
 // Adding labels
+// var getAngle = function (d) {
+// return (180 / Math.PI * (d.startAngle + d.endAngle) / 2 - 90);
+// };
+//
+// g.append("text")
+// .attr("transform", function(d) {
+//       return "translate(" + pos.centroid(d) + ") " +
+//               "rotate(" + getAngle(d) + ")"; })
+// .attr("dy", 5)
+// .style("text-anchor", "start")
+
       g.append("text")
         .transition().ease(d3.easeLinear)
         .duration(2500)

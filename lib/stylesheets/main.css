@@ -69,9 +69,9 @@ body {
 }
 
 svg {
-  left: 13%;
+  left: 14%;
    position: absolute;
-   top: 8%;
+   top: 6%;
 }
 
 body > img {
@@ -81,18 +81,22 @@ body > img {
   z-index: 100;
 }
 
-footer {
+aside {
   position: relative;
-  display: flex;
-  justify-content: flex-end;
-  bottom: 8%;
-  right: 6%;
+  top: 32%;
+  width: 100px;
+  height: 207px;
+  left: 2%;
+  left: -85px;
+  border-radius: 10px;
+  background-color: rgba(0,0,0,0.5);
 }
 
-footer > a > img {
+aside > a > img {
+  padding-left: 35px;
   width: 40px;
   height: 40px;
-  margin-right: 20px;
+  margin-top: 20px;
 }
 
 h2 {
@@ -111,7 +115,7 @@ article > p {
 #glossaryIcon {
   position: absolute;
   right: -5px;
-  bottom: 15px;
+  top: 47%;
   width: 25px;
   cursor: help;
 }
@@ -164,7 +168,7 @@ article > p {
 
 .controls {
   position: absolute;
-  margin-top: 30px;
+  margin-top: 20px;
   background-color: rgba(0,0,0,0.5);
   padding: 10px;
   border-radius: 10px;
@@ -267,7 +271,7 @@ figure {
   font-size: 16px;
   position: absolute;
   left: 35%;
-  bottom: 5%;
+  top: 45%;
   cursor: pointer;
 }
 
@@ -283,4 +287,23 @@ figure {
 
 #slider_value:empty::before {
   content: "1"
+}
+
+.news-box {
+  height: 155px;
+  width: 300px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: black;
+  opacity: 0.6;
+  margin-top: 20px
+}
+
+#arrow {
+  color: rgba(0,0,0,0.6);
+  font-size: 10px;
+  z-index: 90;
+  position: relative;
+  left: 88px;
+  bottom: 87px;
 }

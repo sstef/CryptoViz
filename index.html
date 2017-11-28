@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="lib/stylesheets/main.css">
     <link rel="stylesheet" href="lib/stylesheets/piechart.css">
     <link rel="stylesheet" href="lib/stylesheets/chart.css">
+    <link rel="stylesheet" href="lib/stylesheets/news.css">
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="http://techanjs.org/techan.min.js"></script>
     <script src="./lib/app/bundle.js"></script>
+    <script src="./lib/app/news.js"></script>
   </head>
   <body>
     <div id="modal" class="instructions">
@@ -74,12 +76,11 @@
             <img id="glossaryIcon" src="lib/images/glossary_icon.png" />
           </article>
 
-
-<!-- TODO: add news for currency on click -->
-          <!-- <segment>
+          <div class="news-box">
             <h2>NEWS</h2>
-            <p>(click on pie graph for currency news)</p>
-          </segment> -->
+            <ul class="news-articles">
+            </ul>
+          </div>
 
           <form id="userForm" class="controls" action="" method="GET" >
             <h2>CONTROLS</h2>
@@ -120,21 +121,22 @@
             <input type="submit" value="Render">
           </form>
         </div>
+      </div>
 
 
-      <footer>
+      <aside>
         <a href="https://github.com/sstef" target="_blank">
           <img src="lib/images/git_logo.png" />
         </a>
-
+        <br/>
         <a href="http://www.linkedin.com/in/stevenjstef" target="_blank">
           <img src="lib/images/linked_logo.png" />
         </a>
-
+        <br/>
         <a href="https://sstef.github.io" target="_blank">
           <img src="lib/images/portfolio_logo.png" />
         </a>
-      </footer>
-    </div>
+        <div id="arrow">▶</div>
+      </aside>
   </body>
 </html>
