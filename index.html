@@ -17,112 +17,126 @@
     <script src="./lib/app/news.js"></script>
   </head>
   <body>
-    <div id="modal" class="instructions">
-      <div class="modal">
-        <h2>HOW TO USE</h2>
-        <p>Adjust the donut chart to find what you'd like using the controls. Click on a slice of the donut chart to view information about the cryptocurrency. Once, the information is displayed you can click on "Change Chart" to switch to a candlestick graph displaying historical price over the past year (in some cases you have to click the pie slice twice).
-        <br/>
-        <br/>
-        <p>(Due to the API used, some currencies may not have historical data)</p>
-        <div id="button-wrapper">
-          <input type="button" id="closeModal" value="Close" />
-        </div>
-      </div>
-    </div>
-    <img src="lib/images/logo.png" />
-
-    <div id="glossary" class="hidden">
-      <div class="glossary">
-          <h2>GLOSSARY</h2>
-          <div class="gloss_grid">
-            <h5>Symbol:</h5>
-              <p>This is the shorthand representation of the currency which is also found when trading (buying/selling).</p>
-          </div>
-          <div class="gloss_grid">
-            <h5>Price:</h5>
-            <p>The current valuation (purchase/sell value) for the currency.</P>
-          </div>
-          <div class="gloss_grid">
-            <h5>Market Cap:</h5>
-              <p>The market capitalization is the market value of total currency. It is calculated by multiplying the price with the total outstanding shares.</P>
-          </div>
-          <div class="gloss_grid">
-            <h5>Percent Change:</h5>
-              <p>This is the percent change in price over a specific time frame. (Here it is represented as either 24 hours or 7 days)</p>
-          </div>
+      <div id="modal" class="instructions">
+        <div class="modal">
+          <h2>HOW TO USE</h2>
+          <p>Adjust the donut chart to find what you'd like using the controls. Click on a slice of the donut chart to view information about the cryptocurrency. Once, the information is displayed you can click on "Change Chart" to switch to a candlestick graph displaying historical price over the past year (in some cases you have to click the pie slice twice).
           <br/>
-          <p>**The ranking is determined by market cap**</p>
+          <br/>
+          <p>(Due to the API used, some currencies may not have historical data)</p>
           <div id="button-wrapper">
-            <input type="button" id="closeModal" value="Close" onclick="closeGlossary()" />
-            <script>
-              function closeGlossary() {
-                $('#glossary').toggleClass("hidden instructions");
-              }
-            </script>
+            <input type="button" id="closeModal" value="Close" />
           </div>
         </div>
       </div>
 
-    <div>
-      <figure id="contianer">
-        <section id="charts"></section>
-      </figure>
-
-        <div class="right-panel">
-          <article>
-            <h2>INFO</h2>
-            <p>(click on pie graph for more info)</p>
-            <input type="button" id="flipper" value="Change Chart"/>
-            <img id="glossaryIcon" src="lib/images/glossary_icon.png" />
-          </article>
-
-          <div class="news-box">
-            <h2>NEWS</h2>
-            <ul class="news-articles">
-            </ul>
-          </div>
-
-          <form id="userForm" class="controls" action="" method="GET" >
-            <h2>CONTROLS</h2>
-            <label>Graph by:
-              <select id="categories">
-                 <option value="market_cap_usd" selected>Market Cap</option>
-                 <option value="price_usd">Price</option>
-                 <option value="percent_change_7d">Percent Change (7 Day)</option>
-                 <option value="percent_change_7d">Percent Change (24 Hour)</option>
-              </select>
-            </label>
+      <div id="glossary" class="hidden">
+        <div class="glossary">
+            <h2>GLOSSARY</h2>
+            <div class="gloss_grid">
+              <h5>Symbol:</h5>
+                <p>This is the shorthand representation of the currency which is also found when trading (buying/selling).</p>
+            </div>
+            <div class="gloss_grid">
+              <h5>Price:</h5>
+              <p>The current valuation (purchase/sell value) for the currency.</P>
+            </div>
+            <div class="gloss_grid">
+              <h5>Market Cap:</h5>
+                <p>The market capitalization is the market value of total currency. It is calculated by multiplying the price with the total outstanding shares.</P>
+            </div>
+            <div class="gloss_grid">
+              <h5>Percent Change:</h5>
+                <p>This is the percent change in price over a specific time frame. (Here it is represented as either 24 hours or 7 days)</p>
+            </div>
             <br/>
-
-            <label>Select # of currencies:
-              <select id="DropDownList">
-                 <option value="5" selected>5</option>
-                 <option value="10">10</option>
-                 <option value="15">15</option>
-                 <option value="20">20</option>
-                 <option value="25">25</option>
-              </select>
-            </label>
-            <br/>
-
-            <label>What rank shall we start at: &nbsp;#</label><span id="slider_value"></span>
-              <br/>
-              <span id="slider">
-                1<input id="count" type="range" min="0" max="199" value="0" step="1" onchange="showValue(this.value)"/>200
-              </span>
+            <p>**The ranking is determined by market cap**</p>
+            <div id="button-wrapper">
+              <input type="button" id="closeModal" value="Close" onclick="closeGlossary()" />
               <script>
-                function showValue(x) {
-                  document.getElementById("slider_value").innerHTML=(parseInt(x) + 1);
+                function closeGlossary() {
+                  $('#glossary').toggleClass("hidden instructions");
                 }
               </script>
-            <br/>
-
-
-            <input type="submit" value="Render">
-          </form>
+            </div>
+          </div>
         </div>
-      </div>
 
+
+        <div id="news-view" class="hidden">
+          <div class="news-frame">
+            <iframe name="newsFrame" height="490px" width="1000px" src="target.html"></iframe>
+            <div id="button-wrapper">
+              <input type="button" id="closeModal" value="Close" onclick="closeNews()"/>
+              <script>
+                function closeNews() {
+                  $('#news-view').toggleClass("hidden instructions");
+                }
+              </script>
+            </div>
+          </div>
+        </div>
+
+    <div class="main-view">
+      <img src="lib/images/logo.png" id="logo" />
+        <figure id="contianer">
+          <section id="charts"></section>
+        </figure>
+
+          <div class="right-panel">
+            <article>
+              <h2>INFO</h2>
+              <p>(click on pie graph for more info)</p>
+              <input type="button" id="flipper" value="Change Chart"/>
+              <img id="glossaryIcon" src="lib/images/glossary_icon.png" />
+            </article>
+
+            <div class="news-box">
+              <h2>NEWS</h2>
+              <ul class="news-articles">
+              </ul>
+            </div>
+
+            <form id="userForm" class="controls" action="" method="GET" >
+              <h2>CONTROLS</h2>
+              <label>Graph by:
+                <select id="categories">
+                   <option value="market_cap_usd" selected>Market Cap</option>
+                   <option value="price_usd">Price</option>
+                   <option value="percent_change_7d">Percent Change (7 Day)</option>
+                   <option value="percent_change_7d">Percent Change (24 Hour)</option>
+                </select>
+              </label>
+              <br/>
+
+              <label>Select # of currencies:
+                <select id="DropDownList">
+                   <option value="5" selected>5</option>
+                   <option value="10">10</option>
+                   <option value="15">15</option>
+                   <option value="20">20</option>
+                   <option value="25">25</option>
+                </select>
+              </label>
+              <br/>
+
+              <label>What rank shall we start at: &nbsp;#</label><span id="slider_value"></span>
+                <br/>
+                <span id="slider">
+                  1<input id="count" type="range" min="0" max="199" value="0" step="1" onchange="showValue(this.value)"/>200
+                </span>
+                <script>
+                  function showValue(x) {
+                    document.getElementById("slider_value").innerHTML=(parseInt(x) + 1);
+                  }
+                </script>
+              <br/>
+
+
+              <input type="submit" value="Render">
+            </form>
+          </div>
+      </div>
 
       <aside>
         <a href="https://github.com/sstef" target="_blank">

@@ -42,3 +42,15 @@
 ::-webkit-scrollbar-thumb:window-inactive {
 	background: rgb(18, 91, 39);
 }
+
+.news-frame {
+  height: 550px;
+  width: 1000px;
+  background-color: rgba(0,0,0,0.8);
+  z-index: 101;
+  padding: 20px;
+  border-radius: 10px;
+  left: 13%;
+  top: 5%;
+  position: absolute;
+}
