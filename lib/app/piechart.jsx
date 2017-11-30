@@ -105,6 +105,7 @@ export default function BuildPiechart(url, category) {
             description.select('.market_cap_usd').html("Market Cap: $" + d.data.market_cap_usd);
             description.style('display', 'block');
 
+  // Create candlestick chart and enable chart switching
             BuildCandlestickChart(d.data.symbol);
             $('#flipper').on("click", (e) => {
                 e.preventDefault();
@@ -133,7 +134,7 @@ export default function BuildPiechart(url, category) {
 // .attr("dy", 5)
 // .style("text-anchor", "start")
 
-      g.append("text")
+      var label = g.append("text")
         .transition().ease(d3.easeLinear)
         .duration(2500)
         .attr("transform", (d) => "translate(" + labelArc.centroid(d) + ")")

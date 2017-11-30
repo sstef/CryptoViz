@@ -95,6 +95,8 @@ aside {
   background-color: rgba(0,0,0,0.5);
 }
 
+aside > a {text-decoration: none}
+
 aside > a > img {
   padding-left: 35px;
   width: 40px;
