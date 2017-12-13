@@ -6,7 +6,7 @@ The hottest trend in the financial world today has been cryptocurrency. These en
 
 ## Functionality
 
-CryptoViz is a single screen app with a central point for pie chart. The visualization is simplistic and intuitive. An interactive pie chart vizualizes the currencies multiple JSON responses. A hover and click feature displays currency information through dynamic asynchronous API calls. After selection of currency the user may switch chart views and and visualize historical pricing. 
+CryptoViz is a single screen app with a central point for pie chart. The visualization is simplistic and intuitive. An interactive pie chart visualizes the currencies multiple JSON responses. A hover and click feature displays currency information through dynamic asynchronous API calls. After selection of currency the user may switch chart views and and visualize historical pricing.
 
 ![Chart change](/readme/chart_change.gif)
 
@@ -24,13 +24,23 @@ The core of this app is JavaScript and jQuery to handle the user control interac
 Within the JavaScript I implemented a few API additions to fetch the currency data.
 I utilize 3D.js for the pie chart representation and TechanJS for the candlestick chart.
 
-piechart.js - within the piechart file will be the core of the rendering. It will handle all of the visualization and re rendering of new visualization for user data.
+entry.js - the webpack bundle entry file. It also gives functionality to the controls and buttons, mainly through jQuery.
 
-chart.js - an added view allowing the user to see the historical pricing as a candlestick chart (a poplular financial graph representing the days high, low, close and opening prices).
+piechart.js - within the pie chart file will be the core of the rendering. It will handle all of the visualization and re-rendering of new visualization for user data.
 
-news.js - provides information extension to user with top headlines as well as in-site iframe rendering of links to news.
+chart.js - an added view allowing the user to see the historical pricing as a candlestick chart (a popular financial graph representing the days high, low, close and opening prices).
 
-index.html - will run the piechart.js/chart.js as well as contain form inputs for the user interaction.
+news.js - provides information extension to user with top headlines as well as in-site iframe rendering of links to news, achieved by having the browser make the call to the page.
+```JavaScript
+    var wrapper = article.append("div").attr('class', 'wrapper');
+    wrapper.append('div').attr('class', 'url').style('cursor', 'pointer').style('color', 'cyan')
+      .html("See more").on("click", () => {
+        window.open(a.url, "newsFrame");
+        $('#news-view').toggleClass("hidden instructions");
+      });
+```
+
+index.html - will run the piechart.js/chart.js and news.js as well as contain form inputs for the user interaction.
 
 ## Credits
 *  API calls are being made to https://api.coinmarketcap.com for broad scale currency data.
