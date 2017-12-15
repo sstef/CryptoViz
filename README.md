@@ -14,7 +14,7 @@ Additionally, interactive "controls" will allow for user interaction and adjustm
 
 ![Controls](/readme/rerender.gif)
 
-Furthermore, rendering top headlines via D3 have in wed app page opening capabilities through iframes and modal features.
+Furthermore, rendering top headlines via D3 have in app page opening capabilities through iframes and modal features.
 
 ![News](/readme/news.gif)
 
