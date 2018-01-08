@@ -22,7 +22,7 @@ Furthermore, rendering top headlines via D3 have in app page opening capabilitie
 ## Architecture and technologies
 The core of this app is JavaScript and jQuery to handle the user control interaction.
 Within the JavaScript I implemented a few API additions to fetch the currency data.
-I utilize 3D.js for the pie chart representation and TechanJS for the candlestick chart.
+I utilize D3.js for the pie chart representation and TechanJS for the candlestick chart.
 
 entry.js - the webpack bundle entry file. It also gives functionality to the controls and buttons, mainly through jQuery.
 
